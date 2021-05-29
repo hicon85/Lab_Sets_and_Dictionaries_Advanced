@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _01.Count_Same_Values_in_Array
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double[] numbers = Console.ReadLine()
+                .Split()
+                .Select(double.Parse)
+                .ToArray();
+
+            Dictionary<double, int> counter = new Dictionary<double, int>();
+
+            foreach (var goodJob in numbers)
+            {
+                if (counter.ContainsKey(goodJob))
+                {
+                    counter[goodJob]++;
+                }
+                else
+                {
+                    counter.Add(goodJob, 1);
+                }
+            }
+
+            foreach (var goodJob in counter)
+            {
+                Console.WriteLine($"{goodJob.Key} - {goodJob.Value} times");
+            }
+        }
+    }
+}
