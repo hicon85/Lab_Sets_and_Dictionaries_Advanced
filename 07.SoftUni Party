@@ -1,0 +1,67 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _07.SoftUni_Party
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            bool partyStarted = false;
+            HashSet<string> vipPeople = new HashSet<string>();
+            HashSet<string> regular = new HashSet<string>();
+            string command;
+
+            while ((command = Console.ReadLine()) != "END")
+            {
+                if (command == "PARTY")
+                {
+                    partyStarted = true;
+                    continue;
+                }
+
+                if (partyStarted)
+                {
+                    if (IsVip(command))
+                    {
+                        vipPeople.Remove(command);
+                    }
+                    else
+                    {
+                        regular.Remove(command);
+                    }
+                    
+
+                }
+                else
+                {
+                    if (IsVip(command))
+                    {
+                        vipPeople.Add(command);
+                    }
+                    else
+                    {
+                        regular.Add(command);
+                    }
+                }
+            }
+            Console.WriteLine(vipPeople.Count + regular.Count);
+
+            foreach (var person in vipPeople)
+            {
+                Console.WriteLine(person);
+            }
+            foreach (var person in regular)
+            {
+                Console.WriteLine(person);
+            }
+
+        }
+        private static bool IsVip(string number)
+        {
+            int num = 0;
+            return int.TryParse(number.Substring(0,1),out num);
+        }
+    }
+}
