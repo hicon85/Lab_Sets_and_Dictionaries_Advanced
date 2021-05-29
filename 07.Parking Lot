@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _06.Parking_Lot
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string command;
+            HashSet<string> parkingLot = new HashSet<string>();
+
+            while ((command = Console.ReadLine()) != "END")
+            {
+                string[] tokes = command.Split(", ");
+                string direction = tokes[0];
+                string number = tokes[1];
+
+                if(direction == "IN")
+                {
+                    parkingLot.Add(number);
+                }
+                else 
+                {
+                    parkingLot.Remove(number);
+                }
+
+            }
+            if(parkingLot.Count == 0)
+            {
+                Console.WriteLine("Parking Lot is Empty");
+            }
+            foreach (var goodJob in parkingLot)
+            {
+                Console.WriteLine(goodJob);
+            }
+        }
+    }
+}
